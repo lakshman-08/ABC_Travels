@@ -1,0 +1,41 @@
+CREATE TABLE `user_details` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `firstName` varchar(45) NOT NULL,
+  `lastName` varchar(45) DEFAULT NULL,
+  `MobileNumber` varchar(10) DEFAULT NULL,
+  `Gender` varchar(45) DEFAULT NULL,
+  `emailId` varchar(45) DEFAULT NULL,
+  `password` varchar(45) NOT NULL,
+  `failedCount` int DEFAULT '0',
+  `accountStatus` tinyint DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `route_details` (
+  `routeId` int NOT NULL AUTO_INCREMENT,
+  `source` varchar(45) NOT NULL,
+  `destination` varchar(45) NOT NULL,
+  `noOfSeats` int NOT NULL,
+  `price` int NOT NULL,
+  `discount` int NOT NULL,
+  `availableDate` varchar(45) NOT NULL,
+  PRIMARY KEY (`routeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `booking_details` (
+  `BookingId` int NOT NULL AUTO_INCREMENT,
+  `userId` int DEFAULT NULL,
+  `routeId` int DEFAULT NULL,
+  `source` varchar(45) DEFAULT NULL,
+  `destination` varchar(45) DEFAULT NULL,
+  `totalPrice` double DEFAULT NULL,
+  `noOfPassengers` int DEFAULT NULL,
+  `travellingDate` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`BookingId`),
+  KEY `id_idx` (`userId`),
+  KEY `routeId_idx` (`routeId`),
+  CONSTRAINT `id` FOREIGN KEY (`userId`) REFERENCES `user_details` (`id`),
+  CONSTRAINT `routeId` FOREIGN KEY (`routeId`) REFERENCES `route_details` (`routeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10005 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
